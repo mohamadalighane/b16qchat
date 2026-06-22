@@ -34,7 +34,13 @@ async def main():
     app = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, chat))
-    await app.run_polling()
+    
+    async with app:
+        await app.start()
+        await app.updater.start_polling()
+        await asyncio.Event().wait()  # تا ابد منتظر میمونه
+        await app.updater.stop()
+        await app.stop()
 
 if __name__ == "__main__":
     asyncio.run(main())
