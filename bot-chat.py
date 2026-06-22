@@ -3,12 +3,13 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 from groq import Groq
 
-TELEGRAM_TOKEN = os.environ.get("8933996609:AAEsh5B7LJwmTxX5HhVlmV3x_IJtFG_0IoA")
-GROQ_API_KEY = os.environ.get("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")
+# مستقیم اینجا بذار
+TELEGRAM_TOKEN = "8933996609:AAEsh5B7LJwmTxX5HhVlmV3x_IJtFG_0IoA"
+GROQ_API_KEY = "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"
 
 groq_client = Groq(api_key=GROQ_API_KEY)
 
-SYSTEM_PROMPT = """تو یک دستیار هوشمند فارسی‌زبان هستی.
+SYSTEM_PROMPT = """تو با نام b16q یک برنامه نویس و  یک دستیار هوشمند فارسی‌زبان هستی.
 پاسخ‌هایت کوتاه، مفید و به زبان فارسی باشد."""
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -16,11 +17,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_message = update.message.text
-    
-    await context.bot.send_chat_action(
-        chat_id=update.effective_chat.id, 
-        action="typing"
-    )
+    await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
     
     response = groq_client.chat.completions.create(
         model="llama-3.3-70b-versatile",
