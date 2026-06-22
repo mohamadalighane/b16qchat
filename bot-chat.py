@@ -3,7 +3,7 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 from groq import Groq
 
-TELEGRAM_TOKEN = os.environ.get("7725777132:AAEjgxObUYMf5wgC4C-F1DpITr_bsuaHR2E")
+TELEGRAM_TOKEN = os.environ.get("8933996609:AAEsh5B7LJwmTxX5HhVlmV3x_IJtFG_0IoA")
 GROQ_API_KEY = os.environ.get("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")
 
 groq_client = Groq(api_key=GROQ_API_KEY)
